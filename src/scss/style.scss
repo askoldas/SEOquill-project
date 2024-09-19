@@ -1,3 +1,227 @@
-h1 {
-    color: red;
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap");
+@import 'variables';
+
+/* General Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: $font-1;
+    color: $color-grey-light;
+    background-color: $color-bg;
+    line-height: 1.5;
+    margin: 0 auto;
+
+}
+
+/* //////////// TOPBAR SECTION //////////// */
+.topbar {
+    position: fixed; /* Fixes the topbar at the top of the screen */
+    top: 0;          /* Sticks it to the top */
+    width: 100%;     /* Ensure it spans the entire width */
+    z-index: 100;    /* Ensure it stays on top of other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: $color-black; /* Adjust background to match the sample */
+    font-family: $font-2;
+
+    &__left {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Logo */
+    &__logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: $color-accent; /* SEO in accent color */
+        margin-right: 60px;
+
+        a {
+            color: $color-accent; /* This ensures SEO part is in accent color */
+            text-decoration: none; /* Removes underline */
+            transition: color 0.3s ease; /* Smooth transition for hover */
+    
+            &:hover,
+            &:focus {
+                color: $color-accent; /* Keeps the accent color on hover/focus */
+            }
+    
+            /* Ensure that no browser default styles affect the logo link */
+            &:visited {
+                color: $color-accent; /* Ensure it doesn't change on 'visited' state */
+            }
+        }
+
+        &--highlight {
+            font-style: italic;
+            color: $color-white; /* Quill in white */
+            font-weight: 300; /* Lighter for 'Quill' */
+        }
+    }
+
+    /* Navigation */
+    &__nav {
+        &-list {
+            list-style: none;
+            display: flex;
+            gap: 40px; /* Spacing between nav items */
+        }
+
+        &-item {
+            font-size: 14px;
+
+            a {
+                color: $color-grey-light; /* Grey color for nav items */
+                transition: color 0.3s ease;
+
+                &:hover,
+                &:focus {
+                    color: $color-white; /* Change to white on hover */
+                    text-decoration: none; /* No underline on hover */
+                }
+            }
+        }
+    }
+
+    /* Icons */
+    &__icons {
+        display: flex;
+        gap: 20px;
+
+        .topbar__icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            i {
+                font-size: 12px; /* Smaller icon size */
+                color: $color-white; /* White color for icons */
+
+                &:hover,
+                &:focus {
+                    color: $color-accent; /* Accent color on hover */
+                }
+            }
+        }
+    }
+}
+
+/* //////////// HERO SECTION //////////// */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../img/Hero_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $color-white;
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        text-align: left;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__accent-circle {
+        display: block;
+        width: 150px;
+        height: 150px;
+        background-color: $color-accent;
+        border-radius: 50%;
+        margin-top: -30px;
+        margin-left: auto;
+    }
+
+    &__title {
+        font-family: $font-2;
+        font-size: 36px;
+        line-height: 1;
+    }
+
+    &__logo {
+        display: block;
+        font-size: 220px;
+        font-weight: 700;
+        color: $color-accent;
+        padding-left: 5%;
+        margin-top: -20px;
+        font-style: normal;
+    }
+
+    &__description {
+        font-family: $font-2;
+        font-size: 24px;
+        font-weight: 300;
+        font-style: italic;
+        padding-left: 30%;
+        position: relative;
+    }
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .topbar {
+        flex-direction: column;
+        align-items: center;
+
+        &__nav-list {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        &__icons {
+            margin-top: 10px;
+        }
+    }
+
+    .hero__content {
+        width: 80%;
+    }
+
+    .hero__title {
+        font-size: 28px;
+    }
+
+    .hero__logo {
+        font-size: 116px;
+        margin-top: -12px;
+    }
+
+    .hero__description {
+        font-size: 20px;
+        padding-left: 15%;
+    }
 }
