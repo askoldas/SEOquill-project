@@ -18,20 +18,19 @@ body {
     background-color: $color-bg;
     line-height: 1.5;
     margin: 0 auto;
-
 }
 
 /* //////////// TOPBAR SECTION //////////// */
 .topbar {
-    position: fixed; /* Fixes the topbar at the top of the screen */
-    top: 0;          /* Sticks it to the top */
-    width: 100%;     /* Ensure it spans the entire width */
-    z-index: 100;    /* Ensure it stays on top of other content */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: $color-black; /* Adjust background to match the sample */
+    background-color: $color-black;
     font-family: $font-2;
 
     &__left {
@@ -43,29 +42,28 @@ body {
     &__logo {
         font-size: 24px;
         font-weight: bold;
-        color: $color-accent; /* SEO in accent color */
+        color: $color-accent;
         margin-right: 60px;
 
         a {
-            color: $color-accent; /* This ensures SEO part is in accent color */
-            text-decoration: none; /* Removes underline */
-            transition: color 0.3s ease; /* Smooth transition for hover */
-    
+            color: $color-accent;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
             &:hover,
             &:focus {
-                color: $color-accent; /* Keeps the accent color on hover/focus */
+                color: $color-accent;
             }
-    
-            /* Ensure that no browser default styles affect the logo link */
+
             &:visited {
-                color: $color-accent; /* Ensure it doesn't change on 'visited' state */
+                color: $color-accent;
             }
         }
 
         &--highlight {
             font-style: italic;
-            color: $color-white; /* Quill in white */
-            font-weight: 300; /* Lighter for 'Quill' */
+            color: $color-white;
+            font-weight: 300;
         }
     }
 
@@ -74,22 +72,53 @@ body {
         &-list {
             list-style: none;
             display: flex;
-            gap: 40px; /* Spacing between nav items */
+            gap: 40px;
         }
 
         &-item {
             font-size: 14px;
 
             a {
-                color: $color-grey-light; /* Grey color for nav items */
+                color: $color-grey-light;
                 transition: color 0.3s ease;
 
                 &:hover,
                 &:focus {
-                    color: $color-white; /* Change to white on hover */
-                    text-decoration: none; /* No underline on hover */
+                    color: $color-white;
+                    text-decoration: none;
                 }
             }
+        }
+    }
+
+    /* Burger Menu */
+    &__burger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px; /* Slightly reduced width for better proportions */
+        height: 18px; /* Adjusted height */
+        position: relative;
+        z-index: 101;
+
+        .burger__line {
+            width: 100%;
+            height: 2px;
+            background-color: $color-white;
+            transition: all 0.3s ease;
+        }
+
+        &.open .burger__line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 5px); /* X transformation */
+        }
+
+        &.open .burger__line:nth-child(2) {
+            opacity: 0;
+        }
+
+        &.open .burger__line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -5px); /* X transformation */
         }
     }
 
@@ -107,12 +136,12 @@ body {
             transition: color 0.3s ease;
 
             i {
-                font-size: 12px; /* Smaller icon size */
-                color: $color-white; /* White color for icons */
+                font-size: 12px;
+                color: $color-white;
 
                 &:hover,
                 &:focus {
-                    color: $color-accent; /* Accent color on hover */
+                    color: $color-accent;
                 }
             }
         }
@@ -146,28 +175,27 @@ body {
 
     &__accent-circle {
         display: block;
-    width: 150px;
-    height: 150px;
-    background-color: $color-accent; /* Red accent color */
-    border-radius: 50%; /* Makes the div circular */
-    margin-top: -30px;
-    margin-left: auto; /* Aligns to the right */
-    position: relative;
+        width: 120px;
+        height: 120px;
+        background-color: $color-accent;
+        border-radius: 50%;
+        margin-top: -30px;
+        margin-left: auto;
+        position: relative;
 
-    /* Add the white triangle using ::after */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-40%, -50%); /* Center the triangle */
-        width: 0;
-        height: 0;
-        border-left: 30px solid white; /* Width of the triangle */
-        border-top: 15px solid transparent; /* Top slant of the triangle */
-        border-bottom: 15px solid transparent; /* Bottom slant of the triangle */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-40%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid white;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
     }
-}
 
     &__title {
         font-family: $font-2;
@@ -209,18 +237,57 @@ body {
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
     .topbar {
-        flex-direction: column;
-        align-items: center;
+        justify-content: space-between;
 
         &__nav-list {
-            flex-direction: column;
-            gap: 10px;
+            display: none;
+
+            &.open {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: calc(100vh - 76px); /* Fullscreen minus topbar height */
+                position: fixed;
+                top: 76px; /* Below the topbar */
+                left: 0;
+                background-color: $color-black;
+                z-index: 99;
+                padding-top: 20px;
+
+                /* Apply font size explicitly here */
+                li {
+                    font-size: 22px; /* Increase font size for mobile menu */
+                }
+
+                a {
+                    font-size: 22px; /* Ensure the links themselves also get the font size */
+                    color: $color-grey-light;
+                    text-align: center;
+                    padding: 10px 0;
+
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+
+        &__burger {
+            display: flex;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            justify-content: space-between;
+            align-self: center;
         }
 
         &__icons {
-            margin-top: 10px;
+            margin-right: 10px;
         }
     }
+
 
     .hero__content {
         width: 80%;

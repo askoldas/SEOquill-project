@@ -39,6 +39,13 @@
                 <i class="fas fa-shopping-cart topbar__icon"></i>
             </div>
         </div>
+
+        <!-- Burger Icon for Mobile -->
+        <div class="topbar__burger" id="burger">
+            <div class="burger__line"></div>
+            <div class="burger__line"></div>
+            <div class="burger__line"></div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -58,6 +65,17 @@
         </section>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burger = document.getElementById('burger');
+            const navList = document.querySelector('.topbar__nav-list');
+
+            burger.addEventListener('click', function () {
+                burger.classList.toggle('open');
+                navList.classList.toggle('open');
+            });
+        });
+    </script>
 </body>
 
 </html>
