@@ -146,13 +146,28 @@ body {
 
     &__accent-circle {
         display: block;
-        width: 150px;
-        height: 150px;
-        background-color: $color-accent;
-        border-radius: 50%;
-        margin-top: -30px;
-        margin-left: auto;
+    width: 150px;
+    height: 150px;
+    background-color: $color-accent; /* Red accent color */
+    border-radius: 50%; /* Makes the div circular */
+    margin-top: -30px;
+    margin-left: auto; /* Aligns to the right */
+    position: relative;
+
+    /* Add the white triangle using ::after */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -50%); /* Center the triangle */
+        width: 0;
+        height: 0;
+        border-left: 30px solid white; /* Width of the triangle */
+        border-top: 15px solid transparent; /* Top slant of the triangle */
+        border-bottom: 15px solid transparent; /* Bottom slant of the triangle */
     }
+}
 
     &__title {
         font-family: $font-2;

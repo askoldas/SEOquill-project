@@ -1,0 +1,95 @@
+@import 'variables';
+
+/* Topbar Styles */
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: $color-black;
+    font-family: $font-2;
+
+    &__left {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: $color-accent;
+        margin-right: 60px;
+
+        a {
+            color: $color-accent;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover,
+            &:focus {
+                color: $color-accent;
+            }
+
+            &:visited {
+                color: $color-accent;
+            }
+        }
+
+        &--highlight {
+            font-style: italic;
+            color: $color-white;
+            font-weight: 300;
+        }
+    }
+
+    &__nav {
+        &-list {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        &-item {
+            font-size: 14px;
+
+            a {
+                color: $color-grey-light;
+                transition: color 0.3s ease;
+
+                &:hover,
+                &:focus {
+                    color: $color-white;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    &__icons {
+        display: flex;
+        gap: 20px;
+
+        .topbar__icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            i {
+                font-size: 12px;
+                color: $color-white;
+
+                &:hover,
+                &:focus {
+                    color: $color-accent;
+                }
+            }
+        }
+    }
+}
